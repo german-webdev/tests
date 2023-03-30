@@ -1,6 +1,0 @@
-function rentalCarCost(d) {
-  // Your solution here
-  let costPerDay = 40;
-  
-  return total = d * costPerDay;
-}
