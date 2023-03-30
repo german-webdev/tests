@@ -1,0 +1,15 @@
+function rentalCarCost(d) {
+    // Your solution here
+    let costPerDay = 40;
+    let total = d * costPerDay;
+
+    if (d >= 7) {
+        return total - 50;
+    } else if (d >= 3) {
+        return total - 20;
+    }
+    
+    return total;
+}
+
+console.log(rentalCarCost(10));
