@@ -1,17 +1,23 @@
+let arr = [1, 2, 3, 4, 5, 6, 7, true, undefined, NaN];
 
-function getStringCount(object) {
-    if (typeof object == 'string') return 1;
-    if (!object) return 0;
-    return Object.values(object).reduce((acc, cur) => acc + getStringCount(cur), 0);
-}
+const inRange = (a, b) => {
+  return function(item) {
+    return a > b ? false : Number(item) >= a && Number(item) <= b
+  }
+};
 
-console.log(getStringCount
-({
-  first: '1',
-  second: '2',
-  third: false,
-  fourth: ['anytime', 2, 3, 4 ],
-  fifth:  null,
-})); // 3
+const inArray = arr => {
+  return function(item) {
+    return arr.includes(item)
+  }
+};
 
-console.log(getStringCount(['1', '2', ['3']])); // 3
+const notInArray = arr =>  {
+  return function(item) {
+    return !arr.includes(item)
+  }
+};
+
+console.log(arr.filter(inRange(3, 6))); // [3, 4, 5, 6]
+console.log(arr.filter(inArray([1, 2, 10, undefined]))); // [1, 2, undefined]
+console.log(arr.filter(notInArray([1, 2, 3, 4, 5, 6, 7, true]))); // [undefined, NaN]
