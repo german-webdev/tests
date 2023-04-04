@@ -1,23 +1,36 @@
-let arr = [1, 2, 3, 4, 5, 6, 7, true, undefined, NaN];
+const data = [
+  { 
+    firstName: 'Emily', 
+    lastName: 'N.', 
+    country: 'Ireland', 
+    continent: 'Europe', 
+    age: 30, 
+    language: 'Ruby' 
+  },
 
-const inRange = (a, b) => {
-  return function(item) {
-    return a > b ? false : Number(item) >= a && Number(item) <= b
+  { 
+    firstName: 'Nor', 
+    lastName: 'E.', 
+    country: 'Malaysia', 
+    continent: 'Asia', 
+    age: 20, 
+    language: 'Clojure' 
   }
-};
+];
 
-const inArray = arr => {
-  return function(item) {
-    return arr.includes(item)
+const createUsernames = users => {
+  function getYearOfBirth(age) {
+    return new Date().getFullYear() - age;
   }
-};
 
-const notInArray = arr =>  {
-  return function(item) {
-    return !arr.includes(item)
-  }
-};
-
-console.log(arr.filter(inRange(3, 6))); // [3, 4, 5, 6]
-console.log(arr.filter(inArray([1, 2, 10, undefined]))); // [1, 2, undefined]
-console.log(arr.filter(notInArray([1, 2, 3, 4, 5, 6, 7, true]))); // [undefined, NaN]
+  users.forEach(e => e.username = `${e.firstName}${e.lastName.split('.').join('')}${getYearOfBirth(e.age)}`.toLowerCase());
+  
+  return users;
+}
+const processedData = createUsernames(data);
+console.log(processedData); // [
+// { firstName: 'Emily', lastName: 'N.', country: 'Ireland', continent: 'Europe', age: 30, language: 'Ruby',
+//  username: 'emilyn1990' },
+// { firstName: 'Nor', lastName: 'E.', country: 'Malaysia', continent: 'Asia', age: 20, language: 'Clojure',
+//  username: 'nore2000' }
+// ];
