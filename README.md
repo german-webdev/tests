@@ -1,34 +1,24 @@
 Урок с кодом
-DeepEqual
-Напишите функцию, которая проверяет на равенство два объекта, учитывая их вложенность.
+Languages Statistic
+Реализуйте функцию getLanguagesStatistic, которая поможет IT журналу подвести итоги 2019 года по популярности использования языков программирования. На входе функция получает массив отзывов пользователей. Необходимо вернуть объект в формате { languageName: count, anotherLanguageName: anotherCount, ... }, где languageName - название языка в строке, а count - число отзывов, которые оставили программисты, использующие этот язык. При этом следует учитывать только те отзывы пользователей, которые были оставлены в 2019 году. Год отзыва хранится в поле year, язык - в поле language.
 
-Два объекта считаются равными, если у них все свойства одинаковы. В случае, если одно из свойств - само объект, мы сравниваем на равенство эти объекты по тому же алгоритму. Пример:
+Отзыв предоставлен в следующем формате:
 
-const firstObject = {
-  a: {
-    b: {
-      c: 1,
-      d: 'string',
-      e: {
-        num: 1
-      }
-    }
-  }
-};
+{ firstName: 'Noah', lastName: 'M.', country: 'Switzerland', continent: 'Europe', age: 19, language: 'C', year: 2019 }
+Данные на входе:
 
-const secondObject = {
-  a: {
-    b: {
-      e: {
-        num: 1,
-      },
-      d: 'string',
-      c: 1,
-    }
-  }
-};
+const data = [
+  { firstName: 'Noah', lastName: 'M.', country: 'Switzerland', continent: 'Europe', age: 19, language: 'C', year: 2019 },
+  { firstName: 'Anna', lastName: 'R.', country: 'Liechtenstein', continent: 'Europe', age: 52, language: 'JavaScript', year: 2019 },
+  { firstName: 'Piter', lastName: 'G.', country: 'Sweden', continent: 'Europe', age: 30, language: 'JavaScript', year: 2019 },
+  { firstName: 'Ramon', lastName: 'R.', country: 'Paraguay', continent: 'Americas', age: 29, language: 'Ruby', year: 2014 },
+  { firstName: 'George', lastName: 'B.', country: 'England', continent: 'Europe', age: 81, language: 'C', year: 2016 },
+];
+const result = getLanguagesStatistic(data);
+Данные на выходе:
 
-deepEqual(firstObject, secondObject); // true
-deepEqual({ a:1, b: 3 }, { b: 2, a: 1}); // false
-deepEqual(1, 2); // false
-deepEqual(true, false); // false
+console.log(result);
+// { 
+//   C: 1, 
+//   JavaScript: 2 
+// }
